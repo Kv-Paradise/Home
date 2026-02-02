@@ -1,0 +1,161 @@
+/* Custom Black Theme */
+
+/* Change primary color from gold/yellow (#FFBC53) to black (#000000) */
+
+/* Form controls focus */
+.form-control:focus {
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Links */
+a {
+    color: #000000 !important;
+}
+
+a:hover {
+    color: #333333 !important;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+}
+
+/* Header background */
+.header {
+    background-color: #000000 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .nav-link {
+    color: #fff !important;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #1a1a1a !important;
+}
+
+.sidebar-menu a {
+    color: #fff !important;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu .active > a {
+    background-color: #000000 !important;
+    color: #fff !important;
+}
+
+/* Badges */
+.badge-primary {
+    background-color: #000000 !important;
+}
+
+/* Alerts */
+.alert-primary {
+    background-color: #f0f0f0 !important;
+    border-color: #000000 !important;
+    color: #000000 !important;
+}
+
+/* Table borders and highlights */
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5 !important;
+}
+
+/* Navigation active state */
+.nav-tabs .nav-link.active {
+    border-color: #000000 !important;
+    color: #000000 !important;
+    font-weight: 600;
+}
+
+/* Cards */
+.card {
+    border-color: #ddd !important;
+}
+
+.card-header {
+    background-color: #f8f9fa !important;
+    border-bottom: 2px solid #000000 !important;
+}
+
+/* Form labels */
+label {
+    color: #000000 !important;
+    font-weight: 500;
+}
+
+/* Dropdown items */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: #f0f0f0 !important;
+    color: #000000 !important;
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: #000000 !important;
+}
+
+.pagination .page-link:hover {
+    background-color: #f0f0f0 !important;
+    color: #000000 !important;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+/* Focus states */
+.form-control:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Tab underline */
+.nav-tabs {
+    border-bottom: 2px solid #000000 !important;
+}
+
+/* Modal header */
+.modal-header {
+    background-color: #000000 !important;
+    border-bottom: 2px solid #000000 !important;
+}
+
+.modal-header .close {
+    color: #fff !important;
+}
+
+/* Text accent color */
+.text-primary {
+    color: #000000 !important;
+}
+
+/* Success, warning, danger colors remain for alerts */
+.badge-success {
+    background-color: #28a745 !important;
+}
+
+.badge-warning {
+    background-color: #ffc107 !important;
+}
+
+.badge-danger {
+    background-color: #dc3545 !important;
+}
