@@ -2893,7 +2893,7 @@ table.table-inbox tbody tr.checked {
 	display: flex;
     justify-content: space-between;
     align-items: center;
-	padding-top: 20px;
+	padding: 20px 0;
 }
 .calendar-info p {
 	font-size: 12px;
@@ -2910,11 +2910,7 @@ table.table-inbox tbody tr.checked {
     color: #333333;
     background: #d2efff;
     margin-bottom: 0;
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 20px 10px;
 }
 .calendar-info .calendar-violet {
     font-size: 12px;

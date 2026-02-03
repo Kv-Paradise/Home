@@ -355,6 +355,15 @@ def student_dashboard(request):
     total_notifications = Notification.objects.filter(user=request.user).count()
     total_revenue = Revenue.objects.count()  # Assuming revenue as a proxy for projects or something
 
+    # Calculate lesson progress data for dash-circle
+    lesson1_percent = int((total_students / 50) * 100) if total_students <= 50 else 100
+    lesson1_value = total_students if total_students <= 50 else 50
+    lesson1_total = 50
+
+    lesson2_percent = int((total_teachers / 50) * 100) if total_teachers <= 50 else 100
+    lesson2_value = total_teachers if total_teachers <= 50 else 50
+    lesson2_total = 50
+
     context = {
         'unread_notification_count': unread_notification_count,
         'unread_notification': unread_notification,
@@ -363,5 +372,11 @@ def student_dashboard(request):
         'total_teachers': total_teachers,
         'total_notifications': total_notifications,
         'total_revenue': total_revenue,
+        'lesson1_percent': lesson1_percent,
+        'lesson1_value': lesson1_value,
+        'lesson1_total': lesson1_total,
+        'lesson2_percent': lesson2_percent,
+        'lesson2_value': lesson2_value,
+        'lesson2_total': lesson2_total,
     }
     return render(request, "students/student-dashboard.html", context)

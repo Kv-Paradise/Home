@@ -102,11 +102,11 @@
 <div class="col-12 col-lg-6 col-xl-6 dash-widget3">
 <div class="card-body dash-widget1">
 <div class="circle-bar circle-bar2">
-<div class="circle-graph2" data-percent="20">
-<b>20%</b>
+<div class="circle-graph2" data-percent="{{ lesson1_percent }}">
+<b>{{ lesson1_percent }}%</b>
 </div>
 <h6>Lesson Learned</h6>
-<h4>10 <span>/ 50</span></h4>
+<h4>{{ lesson1_value }} <span>/ {{ lesson1_total }}</span></h4>
 </div>
 <div class="dash-details">
 <h4>Facilisi etiam</h4>
@@ -126,11 +126,11 @@
 <div class="col-12 col-lg-6 col-xl-6 dash-widget4">
 <div class="card-body dash-widget1 dash-widget2">
 <div class="circle-bar circle-bar3">
-<div class="circle-graph3" data-percent="50">
-<b>50%</b>
+<div class="circle-graph3" data-percent="{{ lesson2_percent }}">
+<b>{{ lesson2_percent }}%</b>
 </div>
 <h6>Lesson Learned</h6>
-<h4>25 <span>/ 50</span></h4>
+<h4>{{ lesson2_value }} <span>/ {{ lesson2_total }}</span></h4>
 </div>
 <div class="dash-details">
 <h4>Augue mauris</h4>
