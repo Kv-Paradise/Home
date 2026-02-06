@@ -1,3 +1,6 @@
-- [x] Update student/views.py to calculate lesson progress data (percentages and values) based on total_students and total_teachers
-- [x] Update templates/students/student-dashboard.html to replace hardcoded values in dash-circle with Django template variables (both circles updated)
-- [ ] Test the changes by running the Django server and checking the dashboard
+- [x] Convert static HTML templates to Django templates (departments.html, subjects.html, holiday.html, events.html, library.html, etc.) by extending base.html
+- [ ] Update school/views.py to render correct templates for each view (departments, subjects, holiday, events, library, etc.)
+- [ ] Update sidebar links in templates/Home/base.html to use Django URL names
+- [ ] Check and install missing dependencies
+- [ ] Run python manage.py migrate
+- [ ] Run python manage.py runserver and test all pages

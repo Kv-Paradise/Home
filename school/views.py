@@ -209,7 +209,7 @@ def departments(request):
         'unread_notification_count': unread_notification_count,
         'unread_notification': unread_notifications,
     }
-    return render(request, 'Home/index.html', context)
+    return render(request, 'Home/departments.html', context)
 
 @login_required
 def subjects(request):
