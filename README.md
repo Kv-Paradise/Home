@@ -38,61 +38,108 @@ A comprehensive Django-based web application for managing school operations, inc
 
 ## Technologies Used
 
-- **Backend**: Django 5.1.1
+- **Backend**: Django 6.x (tested with 6.0.1)
 - **Database**: SQLite (default), configurable for PostgreSQL/MySQL
 - **Frontend**: HTML, CSS, JavaScript, Bootstrap
 - **Image Handling**: Django's ImageField with Pillow
 - **Authentication**: Django's built-in auth system
 
-## Installation
+## Installation (Windows — PowerShell and Command Prompt)
 
 ### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
-- Git
+- Python 3.8 or higher installed and on PATH
+- `git` (optional, for cloning)
 
-### Steps
+> These instructions are focused on Windows (PowerShell). Command Prompt equivalents are included where noted.
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   cd school-management-system
-   ```
+1) Clone repository (optional):
+```powershell
+git clone <repository-url>
+cd "path\to\repository"  # e.g. cd "C:\Users\You\Projects\school-management-system"
+```
 
-2. **Create a virtual environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+2) Create and activate a virtual environment (PowerShell):
+```powershell
+python -m venv env
+# If PowerShell execution policy blocks activation, run once (in the same shell):
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+.\n+env\Scripts\Activate.ps1
+# Prompt should change to show (env)
+```
 
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+Command Prompt (cmd.exe) activation:
+```cmd
+python -m venv env
+env\Scripts\activate.bat
+```
 
-4. **Apply database migrations:**
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
+3) Upgrade packaging tools and install requirements:
+```powershell
+python -m pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+```
 
-5. **Create a superuser (optional, for admin access):**
-   ```bash
-   python manage.py createsuperuser
-   ```
+Notes:
+- If `pip install` fails for packages like `Pillow`, ensure you have the appropriate Windows build tools or install a prebuilt wheel. Common fix: install the latest `pip`/`wheel` first (above). If building fails, install the Visual C++ Build Tools from Microsoft.
 
-6. **Collect static files:**
-   ```bash
-   python manage.py collectstatic
-   ```
+4) Prepare the database and run migrations:
+```powershell
+# If you are using the repository's existing migrations, you don't need makemigrations.
+python manage.py migrate
+```
 
-7. **Run the development server:**
-   ```bash
-   python manage.py runserver
-   ```
+If you have changed models and need to create migrations locally:
+```powershell
+python manage.py makemigrations
+python manage.py migrate
+```
 
-8. **Access the application:**
-   Open your browser and go to `http://127.0.0.1:8000/`
+5) Create required folders for media/static (if not present):
+```powershell
+mkdir media\students -Force
+mkdir staticfiles -Force
+```
+
+6) (Optional) Create a superuser for admin access:
+```powershell
+python manage.py createsuperuser
+```
+
+7) Collect static files (for production-like setup) — use `--noinput` to avoid interactive prompts:
+```powershell
+python manage.py collectstatic --noinput
+```
+
+8) Run the development server:
+```powershell
+python manage.py runserver 0.0.0.0:8000
+```
+
+Open `http://127.0.0.1:8000/` (or `http://localhost:8000/`) in your browser.
+
+Troubleshooting common errors
+- If activation fails in PowerShell: run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force` then re-run the activation command.
+- If `python` points to the Microsoft Store stub, use the full path to your Python install or install Python from python.org and check "Add to PATH" during installation.
+- If a dependency fails to install (compilation errors), upgrade `pip` and `wheel` first, then re-run `pip install -r requirements.txt`.
+- If `db.sqlite3` causes migration conflicts, back up and remove it only if you can re-create data or it's a fresh local dev environment.
+
+Quick copyable PowerShell script (run from project root):
+```powershell
+python -m venv env
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+.\env\Scripts\Activate.ps1
+python -m pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py collectstatic --noinput
+python manage.py runserver
+```
+
+If you'd prefer to use the existing `env/` virtual environment in this repository, activate it instead of creating a new one:
+```powershell
+.\env\Scripts\Activate.ps1
+```
 
 ## Usage
 
