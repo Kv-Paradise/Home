@@ -224,3 +224,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Data export/import functionality
 - Attendance tracking
 - Grade management system
+
+## Developers
+
+- Developed by Vikash......
