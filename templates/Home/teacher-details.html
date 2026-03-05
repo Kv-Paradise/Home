@@ -1,0 +1,127 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Teacher Details</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'teachers' %}">Teachers</a></li>
+                        <li class="breadcrumb-item active">Teacher Details</li>
+                    </ul>
+                </div>
+                <div class="col-auto text-right float-right ml-auto">
+                    <a href="{% url 'edit_teacher' teacher.id %}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                    <a href="{% url 'delete_teacher' teacher.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i> Delete</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                {% if teacher.teacher_image %}
+                                <img src="{{ teacher.teacher_image.url }}" alt="Teacher" class="img-fluid" style="border-radius: 10px; max-width: 200px;">
+                                {% else %}
+                                <img src="{% static 'assets/img/profiles/avatar-01.jpg' %}" alt="Teacher" class="img-fluid" style="border-radius: 10px; max-width: 200px;">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <h3>{{ teacher.first_name }} {{ teacher.last_name }}</h3>
+                                <p class="text-muted">Teacher ID: {{ teacher.teacher_id }}</p>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <p><strong>Gender:</strong> {{ teacher.gender }}</p>
+                                        <p><strong>Date of Birth:</strong> {{ teacher.date_of_birth }}</p>
+                                        <p><strong>Department:</strong> {{ teacher.department }}</p>
+                                        <p><strong>Qualification:</strong> {{ teacher.qualification }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Specialization:</strong> {{ teacher.specialization }}</p>
+                                        <p><strong>Mobile:</strong> {{ teacher.mobile_number }}</p>
+                                        <p><strong>Email:</strong> {{ teacher.email }}</p>
+                                        <p><strong>Joining Date:</strong> {{ teacher.joining_date }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subjects & Salary Tabs -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Subjects</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if subjects %}
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Subject Name</th>
+                                    <th>Subject Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for subject in subjects %}
+                                <tr>
+                                    <td>{{ subject.name }}</td>
+                                    <td>{{ subject.subject_code }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <p class="text-muted">No subjects assigned.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Salary History</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if salaries %}
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for salary in salaries %}
+                                <tr>
+                                    <td>{{ salary.payment_date }}</td>
+                                    <td>${{ salary.net_salary }}</td>
+                                    <td><span class="badge badge-{% if salary.status == 'Paid' %}success{% else %}warning{% endif %}">{{ salary.status }}</span></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <p class="text-muted">No salary records.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,67 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Time Table</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Time Table</li>
+                    </ul>
+                </div>
+                <div class="col-auto text-right float-right ml-auto">
+                    <a href="{% url 'add_timetable' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Time Table</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Class</th>
+                                        <th>Section</th>
+                                        <th>Day</th>
+                                        <th>Period</th>
+                                        <th>Subject</th>
+                                        <th>Teacher</th>
+                                        <th>Time</th>
+                                        <th>Room</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for timetable in timetables %}
+                                    <tr>
+                                        <td>{{ timetable.class_name }}</td>
+                                        <td>{{ timetable.section }}</td>
+                                        <td>{{ timetable.day_of_week }}</td>
+                                        <td>{{ timetable.period }}</td>
+                                        <td>{{ timetable.subject.name }}</td>
+                                        <td>{{ timetable.teacher.first_name }} {{ timetable.teacher.last_name }}</td>
+                                        <td>{{ timetable.start_time }} - {{ timetable.end_time }}</td>
+                                        <td>{{ timetable.room_number|default:"-" }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="8" class="text-center">No time table entries found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

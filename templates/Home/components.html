@@ -1,0 +1,64 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Components</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Components</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>UI Components</h4>
+                        <p>This page contains various UI components for the student management system.</p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Buttons</h5>
+                                        <button class="btn btn-primary">Primary</button>
+                                        <button class="btn btn-secondary">Secondary</button>
+                                        <button class="btn btn-success">Success</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Badges</h5>
+                                        <span class="badge badge-primary">Primary</span>
+                                        <span class="badge badge-success">Success</span>
+                                        <span class="badge badge-danger">Danger</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>Alerts</h5>
+                                        <div class="alert alert-success">Success Alert</div>
+                                        <div class="alert alert-warning">Warning Alert</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

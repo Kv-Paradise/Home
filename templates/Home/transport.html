@@ -1,0 +1,65 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Transport</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Transport</li>
+                    </ul>
+                </div>
+                <div class="col-auto text-right float-right ml-auto">
+                    <a href="{% url 'add_route' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Route</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Route Name</th>
+                                        <th>Vehicle Number</th>
+                                        <th>Driver Name</th>
+                                        <th>Contact</th>
+                                        <th>Route</th>
+                                        <th>Fees/Month</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for route in routes %}
+                                    <tr>
+                                        <td>{{ route.id }}</td>
+                                        <td>{{ route.route_name }}</td>
+                                        <td>{{ route.vehicle_number }}</td>
+                                        <td>{{ route.driver_name }}</td>
+                                        <td>{{ route.driver_contact }}</td>
+                                        <td>{{ route.start_point }} - {{ route.end_point }}</td>
+                                        <td>${{ route.fees_per_month }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="7" class="text-center">No transport routes found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

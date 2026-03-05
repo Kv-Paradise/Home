@@ -1,5 +1,6 @@
 from django.http import HttpResponseForbidden, JsonResponse
 from django.shortcuts import render, get_object_or_404,redirect
+from django.db.models import Sum
 from .models import *
 from django.contrib import messages
 # Create your views here.
@@ -353,7 +354,7 @@ def student_dashboard(request):
     total_students = Student.objects.count()
     total_teachers = Teacher.objects.count()
     total_notifications = Notification.objects.filter(user=request.user).count()
-    total_revenue = Revenue.objects.count()  # Assuming revenue as a proxy for projects or something
+    total_revenue = Revenue.objects.aggregate(Sum('amount'))['amount__sum'] or 0
 
     # Calculate lesson progress data for dash-circle
     lesson1_percent = int((total_students / 50) * 100) if total_students <= 50 else 100
@@ -367,6 +368,7 @@ def student_dashboard(request):
     context = {
         'unread_notification_count': unread_notification_count,
         'unread_notification': unread_notification,
+        'user': request.user,
         'user_name': request.user.first_name or request.user.username,
         'total_students': total_students,
         'total_teachers': total_teachers,

@@ -1,0 +1,74 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Subjects</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Subjects</li>
+                    </ul>
+                </div>
+                <div class="col-auto text-right float-right ml-auto">
+                    <a href="{% url 'add_subject' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Subject</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Subject Name</th>
+                                        <th>Subject Code</th>
+                                        <th>Department</th>
+                                        <th>Teacher</th>
+                                        <th>Description</th>
+                                        <th class="text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for subject in subjects %}
+                                    <tr>
+                                        <td>{{ subject.id }}</td>
+                                        <td>{{ subject.name }}</td>
+                                        <td>{{ subject.subject_code }}</td>
+                                        <td>{{ subject.department.name }}</td>
+                                        <td>{% if subject.teacher %}{{ subject.teacher.first_name }} {{ subject.teacher.last_name }}{% else %}Not Assigned{% endif %}</td>
+                                        <td>{{ subject.description|truncatechars:30 }}</td>
+                                        <td class="text-right">
+                                            <div class="actions">
+                                                <a href="{% url 'edit_subject' subject.id %}" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="{% url 'delete_subject' subject.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="7" class="text-center">No subjects found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

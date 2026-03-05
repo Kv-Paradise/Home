@@ -1,0 +1,115 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Edit Teacher</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'teachers' %}">Teachers</a></li>
+                        <li class="breadcrumb-item active">Edit Teacher</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" name="first_name" class="form-control" value="{{ teacher.first_name }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" name="last_name" class="form-control" value="{{ teacher.last_name }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <select name="gender" class="form-control" required>
+                                            <option value="Male" {% if teacher.gender == 'Male' %}selected{% endif %}>Male</option>
+                                            <option value="Female" {% if teacher.gender == 'Female' %}selected{% endif %}>Female</option>
+                                            <option value="Others" {% if teacher.gender == 'Others' %}selected{% endif %}>Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                        <input type="date" name="date_of_birth" class="form-control" value="{{ teacher.date_of_birth }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Department</label>
+                                        <input type="text" name="department" class="form-control" value="{{ teacher.department }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Qualification</label>
+                                        <input type="text" name="qualification" class="form-control" value="{{ teacher.qualification }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Specialization</label>
+                                        <input type="text" name="specialization" class="form-control" value="{{ teacher.specialization }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mobile Number</label>
+                                        <input type="text" name="mobile_number" class="form-control" value="{{ teacher.mobile_number }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" name="email" class="form-control" value="{{ teacher.email }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Teacher Image</label>
+                                        <input type="file" name="teacher_image" class="form-control">
+                                        {% if teacher.teacher_image %}
+                                        <img src="{{ teacher.teacher_image.url }}" alt="Teacher" class="mt-2" style="width: 100px; height: 100px;">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Update Teacher</button>
+                                <a href="{% url 'teachers' %}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

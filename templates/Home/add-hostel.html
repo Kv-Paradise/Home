@@ -1,0 +1,89 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Add Hostel</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'hostel' %}">Hostel</a></li>
+                        <li class="breadcrumb-item active">Add Hostel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Hostel Name</label>
+                                        <input type="text" name="name" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Type</label>
+                                        <select name="type" class="form-control" required>
+                                            <option value="">Select Type</option>
+                                            <option value="Boys">Boys</option>
+                                            <option value="Girls">Girls</option>
+                                            <option value="Mixed">Mixed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Total Rooms</label>
+                                        <input type="number" name="total_rooms" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Available Rooms</label>
+                                        <input type="number" name="available_rooms" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Warden Name</label>
+                                        <input type="text" name="warden_name" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Warden Contact</label>
+                                        <input type="text" name="warden_contact" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea name="address" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Add Hostel</button>
+                                <a href="{% url 'hostel' %}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

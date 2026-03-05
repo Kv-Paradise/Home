@@ -1,0 +1,83 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Fees Collections</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Fees Collections</li>
+                    </ul>
+                </div>
+                <div class="col-auto text-right float-right ml-auto">
+                    <a href="{% url 'add_fees' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Fees</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="card bg-success text-white">
+                                    <div class="card-body">
+                                        <h5>Total Collected</h5>
+                                        <h3>${{ total_collected }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-warning text-white">
+                                    <div class="card-body">
+                                        <h5>Total Pending</h5>
+                                        <h3>${{ total_pending }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Student Name</th>
+                                        <th>Fees Type</th>
+                                        <th>Amount</th>
+                                        <th>Payment Date</th>
+                                        <th>Payment Method</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for fee in fees %}
+                                    <tr>
+                                        <td>{{ fee.id }}</td>
+                                        <td>{{ fee.student.first_name }} {{ fee.student.last_name }}</td>
+                                        <td>{{ fee.fees_type }}</td>
+                                        <td>${{ fee.amount }}</td>
+                                        <td>{{ fee.payment_date }}</td>
+                                        <td>{{ fee.payment_method }}</td>
+                                        <td><span class="badge badge-{% if fee.status == 'Paid' %}success{% else %}warning{% endif %}">{{ fee.status }}</span></td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="7" class="text-center">No fees records found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

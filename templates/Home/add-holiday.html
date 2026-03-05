@@ -1,0 +1,61 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Add Holiday</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'holiday' %}">Holiday</a></li>
+                        <li class="breadcrumb-item active">Add Holiday</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Holiday Name</label>
+                                        <input type="text" name="name" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="date" name="date" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea name="description" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" name="is_national_holiday"> National Holiday
+                                </label>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Add Holiday</button>
+                                <a href="{% url 'holiday' %}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

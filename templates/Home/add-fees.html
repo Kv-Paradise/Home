@@ -1,0 +1,107 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Add Fees</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'fees_collections' %}">Fees Collections</a></li>
+                        <li class="breadcrumb-item active">Add Fees</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Student</label>
+                                        <select name="student" class="form-control" required>
+                                            <option value="">Select Student</option>
+                                            {% for student in students %}
+                                            <option value="{{ student.id }}">{{ student.first_name }} {{ student.last_name }} ({{ student.student_id }})</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Fees Type</label>
+                                        <input type="text" name="fees_type" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        <input type="number" name="amount" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Payment Date</label>
+                                        <input type="date" name="payment_date" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Payment Method</label>
+                                        <select name="payment_method" class="form-control" required>
+                                            <option value="">Select Method</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Card">Card</option>
+                                            <option value="Online">Online</option>
+                                            <option value="Cheque">Cheque</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select name="status" class="form-control" required>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Paid">Paid</option>
+                                            <option value="Partial">Partial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Transaction ID</label>
+                                        <input type="text" name="transaction_id" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Remarks</label>
+                                <textarea name="remarks" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Add Fees</button>
+                                <a href="{% url 'fees_collections' %}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

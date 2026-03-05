@@ -1,0 +1,65 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Accounts</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Accounts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h5>Total Revenue</h5>
+                        <h3>${{ total_revenue }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <h5>Total Expenses</h5>
+                        <h3>${{ total_expenses }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <h5>Net Balance</h5>
+                        <h3>${{ net_balance }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Quick Links</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <a href="{% url 'fees_collections' %}" class="list-group-item list-group-item-action">Fees Collections</a>
+                            <a href="{% url 'expenses' %}" class="list-group-item list-group-item-action">Expenses</a>
+                            <a href="{% url 'salary' %}" class="list-group-item list-group-item-action">Salary</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
